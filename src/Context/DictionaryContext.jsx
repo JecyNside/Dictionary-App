@@ -1,11 +1,8 @@
-// DictionaryContext.js
 import { createContext, useContext } from "react";
 import { useFetchDictionary } from "../Hooks/useFetchDictionary";
 
-// 1. Creamos el contexto
 const DictionaryContext = createContext();
 
-// 2. Creamos el Provider
 function DictionaryProvider({ children }) {
   const { response, loading, error, fetchData } = useFetchDictionary();
 
@@ -13,7 +10,7 @@ function DictionaryProvider({ children }) {
     response,
     loading,
     error,
-    fetchData
+    fetchData,
   };
 
   return (
@@ -23,7 +20,6 @@ function DictionaryProvider({ children }) {
   );
 }
 
-// 3. Hook para acceder al contexto
 function useDictionaryContext() {
   return useContext(DictionaryContext);
 }

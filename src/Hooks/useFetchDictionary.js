@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
 export const useFetchDictionary = () => {
   const [response, setResponse] = useState([]);
@@ -10,7 +10,9 @@ export const useFetchDictionary = () => {
     setError(null);
 
     try {
-      const res = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`);
+      const res = await fetch(
+        `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`
+      );
       if (!res.ok) {
         throw new Error(`Error al obtener resultados para la palabra: ${word}`);
       }

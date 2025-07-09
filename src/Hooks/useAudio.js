@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback } from "react";
 
 export const useAudio = (response) => {
   const [audioElement, setAudioElement] = useState(null);
@@ -10,12 +10,12 @@ export const useAudio = (response) => {
     }
 
     // Try to find audio in order: US -> AU -> UK -> any available
-    const preferredRegions = ['us', 'au', 'uk'];
-    
+    const preferredRegions = ["us", "au", "uk"];
+
     // First try with preferred regions
     for (const region of preferredRegions) {
-      const phoneticWithRegion = response.phonetics.find(
-        p => p.audio?.includes(`-${region}.mp3`)
+      const phoneticWithRegion = response.phonetics.find((p) =>
+        p.audio?.includes(`-${region}.mp3`)
       );
       if (phoneticWithRegion?.audio) {
         return phoneticWithRegion.audio;
@@ -23,7 +23,7 @@ export const useAudio = (response) => {
     }
 
     // If no regional audio found, get the first available audio
-    const firstWithAudio = response.phonetics.find(p => p.audio);
+    const firstWithAudio = response.phonetics.find((p) => p.audio);
     return firstWithAudio?.audio || null;
   }, [response]);
 
@@ -37,9 +37,9 @@ export const useAudio = (response) => {
     }
 
     const audio = new Audio(audioUrl);
-    audio.addEventListener('play', () => setIsPlaying(true));
-    audio.addEventListener('ended', () => setIsPlaying(false));
-    audio.addEventListener('pause', () => setIsPlaying(false));
+    audio.addEventListener("play", () => setIsPlaying(true));
+    audio.addEventListener("ended", () => setIsPlaying(false));
+    audio.addEventListener("pause", () => setIsPlaying(false));
     audio.play();
     setAudioElement(audio);
   }, [getAudioUrl, audioElement]);
@@ -47,6 +47,6 @@ export const useAudio = (response) => {
   return {
     isPlaying,
     handlePlay,
-    hasAudio: !!getAudioUrl()
+    hasAudio: !!getAudioUrl(),
   };
 };

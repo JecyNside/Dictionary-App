@@ -3,7 +3,6 @@ import play from "../assets/images/icon-play.svg";
 import { useAudio } from "../Hooks/useAudio";
 
 const Word = ({ response }) => {
-  
   const { isPlaying, handlePlay, hasAudio } = useAudio(response);
   if (!response?.meanings?.[0]) return null;
 
@@ -17,9 +16,9 @@ const Word = ({ response }) => {
 
         {hasAudio && (
           <div className="container-result-header-audio">
-            <button 
+            <button
               onClick={handlePlay}
-              className={isPlaying ? 'playing' : ''}
+              className={isPlaying ? "playing" : ""}
               disabled={isPlaying}
             >
               <img src={play} alt="play" />
@@ -85,7 +84,11 @@ const Word = ({ response }) => {
             <div className="container-result-verb-footer-source">
               <p>Source</p>
               <div className="container-result-verb-footer-source-link">
-                <a href={response.sourceUrls[0]} target="_blank" rel="noopener noreferrer">
+                <a
+                  href={response.sourceUrls[0]}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   {response.sourceUrls[0]}
                 </a>
               </div>
